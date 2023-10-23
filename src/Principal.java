@@ -1,3 +1,6 @@
+import br.com.projeto.screenMatch.calculos.CalculadoraDeTempo;
+import br.com.projeto.screenMatch.calculos.FiltroRecomendacao;
+import br.com.projeto.screenMatch.modelos.Episodio;
 import br.com.projeto.screenMatch.modelos.Filme;
 import br.com.projeto.screenMatch.modelos.Series;
 
@@ -17,6 +20,11 @@ public class Principal {
         filme.avalia(9);
         filme.avalia(10);
         System.out.println("Total de avaliações: " + filme.getTotalDeAvaliacoes());
+
+        Filme filme2 = new Filme();
+        filme2.setNome("Harry Potter");
+        filme2.setAnoDeLancamento(2002);
+        filme2.setDuracaoEmMinutos(180);
 
 
         System.out.println("Média das avaliações " + filme.pegaMedia());
@@ -41,7 +49,30 @@ public class Principal {
         serie.avalia(10);
         serie.avalia(9.5);
         serie.avalia(8.5);
+        serie.avalia(6.5);
+        serie.avalia(7.5);
+        System.out.println("Total de avaliações: " + serie.getTotalDeAvaliacoes());
 
+        System.out.println("====================================================");
+        System.out.println("===================CALCULADORA======================");
+        CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
+        calculadora.inclui(filme);
+        calculadora.inclui(serie);
+        System.out.println("Calculando o tempo total dos filmes: " + calculadora.getTempoTotal());
 
+        System.out.println("====================================================");
+        System.out.println("=================FILTRO RECOMENDAÇÃO================");
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(filme);
+
+        System.out.println("====================================================");
+        System.out.println("=====================EPISÓDIO=======================");
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(serie);
+        episodio.setTotalViualizacoes(400);
+        //relacionando dois objetos, estamos fazendo uma referencia de um objeto para outro
+        //Estamos dizendo: episódio a serie é xxx.
+        filtro.filtra(episodio);
     }
 }
